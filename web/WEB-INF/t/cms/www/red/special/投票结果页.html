@@ -1,0 +1,97 @@
+[#include "../include/共用head.html"/]
+<body onload="MM_preloadImages('/${res}/images/ad_r02.gif','/${res}/images/icon_home2.png')">
+[#include "../include/页头导航栏.html"/]
+<div class="bodymain bodymain3nd">
+    <div class="bodymain3nd_left">
+        <ul class="leftmenu">
+            <li class="leftmenu_tit">${channel.parent.name!channel.title}</li>
+            [@cms_channel_list parentId=channel.parentId]
+            [#list tag_list as c]
+            <li [#if channel??&&channel.id==c.id]class="selected"[/#if]> <a href="${c.url}">${c.name} </a></li>
+            [/#list]
+            [/@cms_channel_list]
+        </ul>
+    </div>
+    <div class="w700 mt10">
+        [#include "../include/导航路径.html"/]
+        <div class="rim05">
+            <div class="LanMu01-2">
+                <div class="LanMu01-1"></div>
+                <span style="color: #3358a1; font-size: 18px; font-weight: bold; line-height: 40px;">投票结果</span>
+
+                <div class="LanMu01-3"></div>
+            </div>
+            [#if status?? && status!=0]
+            <div class="survey">
+                <dl>
+                    <dt></dt>
+                    <dd class="msg" style="font-size:13px; color:#cc001d;">
+                        [#if status==1]
+                        投票ID不能为空！
+                        [#elseif status==2]
+                        投票项不能为空！
+                        [#elseif status==100]
+                        投票主题不存在！
+                        [#elseif status==101]
+                        投票项不合法！
+                        [#elseif status==501]
+                        需要登录才能投票！
+                        [#elseif status==200]
+                        投票主题已经关闭！
+                        [#elseif status==201]
+                        投票的选项个数大于允许的个数！
+                        [#elseif status==202]
+                        投票还没有开始！
+                        [#elseif status==203]
+                        投票已经结束！
+                        [#elseif status==204]
+                        您已经投过票了，请勿重复投票！<!--，同一会员不能重复投票-->
+                        [#elseif status==205]
+                        您已经投过票，请勿重复投票！<!--，，同一IP不能重复投票-->
+                        [#elseif status==206]
+                        您已经投过票了，请勿重复投票！<!--，，同一COOKIE不能重复投票-->
+                        [#else]
+                        投票失败！
+                        [/#if]
+                    </dd>
+                </dl>
+            </div>
+
+            [#else]
+            <div class="tptitle1" style="height: 40px;">
+                <span style="color:#3358a1;font-size: 15px;font-weight: bold;">投票主题：${vote.title?html}</span> &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 12px; color:#555;"> 总参与人数：${vote.totalCount}人</span>
+            </div>
+            <table width="650" border="0" align="center" cellpadding="0" cellspacing="0" style="font-size: 13px;">
+                [#list vote.subtopics as subTopic]
+                <tr>
+                    <td width="30" height="30" align="center" bgcolor="#ffffff" style="font-weight: bold;color:#3358a1; background: #fff;">${subTopic_index+1}、</td>
+                    <td width="620" height="30" bgcolor="#ffffff"  style="font-weight: bold;color:#3358a1;">
+                        ${subTopic.title?html}
+                    </td>
+                </tr>
+                [#if subTopic.isRadio||subTopic.isMulti]
+                [#list subTopic.voteItems as item]
+                <tr>
+                    <td width="30" height="30" align="center" bgcolor="#ffffff" style="color:#ffffff;">${item_index+1}.</td>
+                    <td width="620" bgcolor="#ffffff" style="padding-left: 20px; color:#666;">${item.title?html} - (${item.voteCount}票)</td>
+                </tr>
+                <tr>
+                    <td height="30">&nbsp;</td>
+                    <td>
+                        <img src="/${res}/images/vote_bar.gif" width="${item.percent}%" height="10px" border="0"/>
+                      <span style="font-size: 12px; color: #666;">  ${item.percent}%   </span>
+                    </td>
+                </tr>
+                [/#list]
+                [/#if]
+                [/#list]
+
+            </table>
+            [/#if]
+        </div>
+    </div>
+</div>
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]

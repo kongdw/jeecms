@@ -1,0 +1,334 @@
+[#include "../include/共用head.html"/]
+<body>
+<div class="container">
+    [#include "../include/页头导航栏.html"/]
+    <!--------------------------bodymain start--------------------------------->
+    <div class="bodymain">
+    <!--bodymain_left start -->
+    <div class="bodymain_left">
+    <!--bodymain_left 1p start -->
+    <div class="margin_b10">
+        <!--1Pleft_leftbox start-->
+        <div class="bodymain_left1">
+            <!-- 焦点图代码宽310_begin -->
+            <div class="margin_b10">
+            <div class="comiis_wrapad" id="slideContainer">
+                <div id="frameHlicAe" class="frame cl">
+                    <div class="block">
+                        <div class="cl">
+                            <ul class="slideshow" id="slidesImgs">
+                                [@cms_content_list count='5' orderBy='4' typeId='3' titLen='18' channelOption='1' channelId='1']
+                                [#list tag_list as a]
+                                <li>
+                                    <a href="${a.url}" target="_blank">
+                                        <img src="${base}${a.typeImg!site.defImg}" width="310" height="229" alt="${a.title}"/>
+                                    </a>
+                                        <span class="title">
+                                        [@text_cut s=a.title len=titLen /]
+                                        </span>
+                                </li>
+                                [/#list]
+                                [/@cms_content_list]
+                            </ul>
+                        </div>
+                        <div class="slidebar" id="slideBar">
+                            <ul>
+                                <li class="on">1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <script type="text/javascript">
+                SlideShow(5000);
+            </script>
+            <!-- 焦点图代码宽310_end -->
+            <!--特别关注 start -->
+            <div class="tabbox_newsc1">
+                <ul  class="tab-titgroup">
+
+                    <li class="tabtit01" >[@cms_channel id='13']<a href="${tag_bean.url}" target="_blank">特别关注</a>[/@cms_channel]</li>
+                </ul>
+                <!--tab-contentgroup start -->
+                <div class="tab-contentgroup">
+                    <!--tab-content01 start -->
+                    <div  class="topcontent">
+                        <ul class="picnewslist">
+                            [@cms_content_list count='10' orderBy='4' titLen='18' channelId='13'  channelOption='1']
+                            [#list tag_list as a]
+                            [#if a_index < 3]
+                            <li>
+                                <span class="icon_number1">${a_index+1}</span> <a href="${a.url}" class="name" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+                                <hr class="graydashed">
+                            </li>
+                            [#elseif !a_has_next]
+                            <li>
+                                <span class="icon_number2">${a_index+1}</span> <a href="${a.url}" class="name" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+                            </li>
+                             [#else]
+                            <li>
+                                <span class="icon_number2">${a_index+1}</span> <a href="${a.url}" class="name" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+                                <hr class="graydashed">
+                            </li>
+                            [/#if]
+                            [/#list]
+                            [/@cms_content_list]
+                        </ul>
+                    </div>
+                    <!--tab-content01 end -->
+
+                </div>
+                <!--tab-contentgroup end -->
+            </div>
+            <!--特别关注 end -->
+
+        </div>
+        <!--1Pleft_leftbox end-->
+        <!--1Pleft_最新动态box start-->
+        <div class="bodymain_left2">
+            <ul class="newslist">
+                <li class="tit_zxdt">[@cms_channel id='11']<a href="${tag_bean.url}" target="_blank">最新动态</a>[/@cms_channel]</li>
+                [@cms_content_list count='24' orderBy='4' titLen='24' channelId='11'  channelOption='1' dateFormat='yyyy-MM-dd' ]
+                [#list tag_list as a]
+                <li>
+                    <a href="${a.url}" class="name_l" title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a> <span class="date_rh">${a.date?string(dateFormat)}</span>
+                </li>
+                [/#list]
+                [/@cms_content_list]
+            </ul>
+        </div>
+        <!--1Pleft_最新动态box end-->
+    </div>
+    <!--bodymain_left 1p end -->
+    <!--bodymain_left AD start -->
+    <div class="margin_b10"> <img src="/${res}/images/banner_775x80.gif" alt="学习十八大精神" /> </div>
+    <!--bodymain_left AD end -->
+    <!--bodymain_left 2p start -->
+    <div class="margin_b10">
+        <!--公告通知+行业报道 start -->
+        <div class="tabbox_newsc2 f-left">
+            <ul  class="tab-titgroup">
+                <li class="tabtit01" id="t01">[@cms_channel id='75']<a href="${tag_bean.url}" target="_blank">公告通知</a>[/@cms_channel]</li>
+                <li class="tabtit02" id="t02">[@cms_channel id='14']<a href="${tag_bean.url}" target="_blank">行业报道</a>[/@cms_channel]</li>
+            </ul>
+            <!--tab-contentgroup start -->
+            <div class="tab-contentgroup">
+                <!--tab-content01 start -->
+                <div id="tabcontentt01" class="tabcontent"  style="height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='26' channelId='75'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content01 end -->
+                <!--tab-content02 start -->
+                <div id="tabcontentt02" class="tabcontent" style="display:none;height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='26' channelId='14'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content02 end -->
+            </div>
+            <!--tab-contentgroup end -->
+        </div>
+        <!--公告通知+行业报道 end -->
+        <!--曝光台+办事指南 start -->
+        <div class="tabbox_newsc2 f-right">
+            <ul  class="tab-titgroup">
+                <li class="tabtit01" id="b01">[@cms_channel id='73']<a href="${tag_bean.url}" target="_blank">曝光台</a>[/@cms_channel]</li>
+                <li class="tabtit02" id="b02">[@cms_channel id='76']<a href="${tag_bean.url}" target="_blank">办事指南</a>[/@cms_channel]</li>
+            </ul>
+            <!--tab-contentgroup start -->
+            <div class="tab-contentgroup">
+                <!--tab-content01 start -->
+                <div id="tabcontentb01" class="tabcontent" style="height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='25' channelId='73'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content01 end -->
+                <!--tab-content02 start -->
+                <div id="tabcontentb02" class="tabcontent" style="display:none;height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='26' channelId='76'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content02 end -->
+            </div>
+            <!--tab-contentgroup end -->
+        </div>
+        <!--曝光台+办事指南 end -->
+
+    </div>
+    <div class="margin_b10">
+        <!--工作交流+队伍风采 start -->
+        <div class="tabbox_newsc2 f-left">
+            <ul  class="tab-titgroup">
+                <li class="tabtit01" id="g01">[@cms_channel id='90']<a href="${tag_bean.url}" target="_blank">工作交流</a>[/@cms_channel]</li>
+                <li class="tabtit02" id="g02">[@cms_channel id='88']<a href="${tag_bean.url}" target="_blank">队伍风采</a>[/@cms_channel]</li>
+            </ul>
+            <!--tab-contentgroup start -->
+            <div class="tab-contentgroup">
+                <!--tab-content01 start -->
+                <div id="tabcontentg01" class="tabcontent" style="height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='25' channelId='90'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content01 end -->
+                <!--tab-content02 start -->
+                <div id="tabcontentg02" class="tabcontent" style="display:none;height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='25' channelId='88'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content02 end -->
+            </div>
+            <!--tab-contentgroup end -->
+        </div>
+        <!--工作交流+队伍风采 end -->
+        <!--法律法规+饮食用药安全 start -->
+        <div class="tabbox_newsc2 f-right">
+            <ul  class="tab-titgroup">
+                <li class="tabtit01" id="f01">[@cms_channel id='64']<a href="${tag_bean.url}" target="_blank">法律法规</a>[/@cms_channel]</li>
+                <li class="tabtit02" id="f02">[@cms_channel id='89']<a href="${tag_bean.url}" target="_blank">饮食用药安全</a>[/@cms_channel]</li>
+            </ul>
+            <!--tab-contentgroup start -->
+            <div class="tab-contentgroup">
+                <!--tab-content01 start -->
+                <div id="tabcontentf01" class="tabcontent" style="height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='25' channelId='64'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank"><span style="color:#3358a1; ">[${a.ctgName}]</span>[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content01 end -->
+                <!--tab-content02 start -->
+                <div id="tabcontentf02" class="tabcontent" style="display:none;height:230px;">
+                    <ul class="newslist">
+                        [@cms_content_list count='9' orderBy='4' titLen='25' channelId='89'  channelOption='1']
+                        [#list tag_list as a]
+                        <li>
+                            <a href="${a.url}"  title="${a.title}" target="_blank">[@text_cut s=a.title len=titLen append='...'/]</a>
+
+                        </li>
+                        [/#list]
+                        [/@cms_content_list]
+                    </ul>
+                </div>
+                <!--tab-content02 end -->
+            </div>
+            <!--tab-contentgroup end -->
+        </div>
+        <!--法律法规+饮食用药安全 end -->
+    </div>
+
+    <!--bodymain_left 2p end -->
+    </div>
+    <!----bodymain_left end --->
+
+    <!--bodymain_right start -->
+    <div class="bodymain_right">
+        <!--地图start -->
+        <ul class="tabbox_gray margin_b10 padding_b10">
+            <li class="title_map">太原市药店电子地图</li>
+            <li style="padding-left:40px;"><a class="per3" href="/pcjg/1022.jhtml">小店分局</a><a class="per3" href="/pcjg/1023.jhtml">迎泽分局</a><a class="per3" href="/pcjg/1025.jhtml">万柏林分局</a> </li>
+            <li  style="padding-left:40px;"><a class="per3" href="/pcjg/1027.jhtml">晋源分局</a><a class="per3" href="/pcjg/2442.jhtml">娄烦县局</a><a class="per3" href="http://www.sxtyxhl.gov.cn/xinghl/ziz/mb1/index.jsp?fuksid=279">杏花岭分局</a></li>
+            <li  style="padding-left:40px;"><a class="per3" href="/pcjg/2440.jhtml">古交市局</a><a class="per3" href="/pcjg/2441.jhtml">清徐县局</a><a class="per3" href="/pcjg/1026.jhtml">尖草坪分局</a></li>
+            <li  style="padding-left:40px;"><a class="per3" href="/pcjg/2443.jhtml">阳曲县局</a></li>
+        </ul>
+        <!--地图end -->
+        <!--快捷图标 start-->
+        <div class="margin_b7">
+            <p class="margin_b7">
+
+                <a href="mailto:tyfdajzxx@yahoo.com.cn"> <img src="/${res}/images/btn_r01.gif" width="151" height="37" class=" f-left"/>  </a>
+                <a href="/gzzz1.jhtml"><img src="/${res}/images/btn_r02.gif" width="151" height="37"  class=" f-right"/> </a>
+            </p>
+            <p class="margin_b7">
+                <a href="/pcjg/index.jhtml"><img src="/${res}/images/btn_r03.gif" width="151" height="37" class=" f-left"/></a>
+                    <a href="/nsjg/index.jhtml"> <img src="/${res}/images/btn_r04.gif" width="151" height="37"  class=" f-right"/></a>
+            </p>
+            <p class="margin_b7">
+                <a href="/zfxfgkcn1.jhtml"><img src="/${res}/images/btn_r05.gif" width="151" height="37" class=" f-left"/></a>
+                <a href="/wsgyaqjs/index.jhtml"><img src="/${res}/images/btn_r06.gif" width="151" height="37"  class=" f-right"/></a>
+            </p>
+            <p class="margin_b7">
+                <a href="/zlsyhl1.jhtml"><img src="/${res}/images/btn_r07.gif" width="151" height="37" class=" f-left"/></a>
+                <a href="/lzjs1.jhtml"><img src="/${res}/images/btn_r08.gif" width="151" height="37"  class=" f-right"/></a>
+            </p>
+            <p class="margin_b7">
+                <img src="/${res}/images/btn_hotline.gif" width="312" height="60" />
+            </p>
+        </div>
+        <!--快捷图标 end-->
+        <!--网站链接 start -->
+        [#include "../include/友情链接_下拉列表.html"/]
+        <!--网站链接 end -->
+        <!--快捷通道 start -->
+        [#include "../include/快捷通道.html"]
+        <!--快捷通道 end -->
+        <!--ad bar start -->
+        [#include "../include/页脚友情链接栏.html"/]
+        <!--ad bar end -->
+    </div>
+    <!----bodymain_right end --->
+    </div>
+    <!--------------------------bodymain end--------------------------------->
+
+    [#include "../include/页脚信息栏.html"/]
+</div>
+</body>
+[#include "../include/共用tail.html"/]

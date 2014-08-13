@@ -1,0 +1,8 @@
+<ul class="tabbox_news margin_b10 padding_b10">
+    <li class="title">友情链接</li>
+    [@cms_friendlink_list ctgId='2']
+    [#list tag_list as link]
+    <li class="ad"><a href="${link.domain}" onclick="$.get('${base}/friendlink_view.jspx?id=${link.id}')" target="_blank"><img src="${link.logo}" width="282" height="52"/></a></li>
+    [/#list]
+    [/@cms_friendlink_list]
+</ul>

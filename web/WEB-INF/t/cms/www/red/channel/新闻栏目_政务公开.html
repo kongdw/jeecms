@@ -1,0 +1,100 @@
+[#include "../include/共用head.html"/]
+
+<body onload="MM_preloadImages('/${res}/images/ad_r02.gif')">
+<!--header start -->
+[#include "../include/页头导航栏.html"/]
+<!--header end -->
+<!--------------------------bodymain start--------------------------------->
+<div class="bodymain bodymain2nd">
+<!--bodymain_right start -->
+<div class="bodymain_right">
+
+  <!--曝光栏  start -->
+  <ul class="tabbox_news padding_b10 margin_b10">
+    <li class="title">[@cms_channel id='73']<a href="${tag_bean.url}" target="_blank">曝光栏</a>[/@cms_channel] </li>
+    <li><ul class="newslist padding_h5 padding_w10">
+        [@cms_content_list count='14' orderBy='4' titLen='19' channelId='73'  channelOption='1']
+        [#list tag_list as a]
+        <li><a href="${a.url}">[@text_cut s=a.title len=titLen append='...'/]</a></li>
+        [/#list]
+        [/@cms_content_list]
+    </ul>   </li>
+  </ul>
+  <!--曝光栏  end -->
+  <!--快捷通道 start -->
+    [#include "../include/快捷通道.html"]
+  <!--快捷通道 end -->
+
+  <!--网站链接 start -->
+    [#include "../include/友情链接_下拉列表.html"/]
+  <!--网站链接 end -->
+    <!--快捷图标 start-->
+  <div class="margin_b7">
+    <p class="margin_b7"><img src="/${res}/images/btn_hotline.gif" width="312" height="60" /> </p>
+  </div>
+  <!--快捷图标 end-->
+</div>
+<!----bodymain_right end --->
+
+<!--bodymain_left start -->
+<div class="bodymain_left">
+<!--status bar start -->
+[#include "../include/导航路径.html"/]
+<!--status bar end -->
+
+
+  <ul class="articlelist_danger01">
+    <li class="tit_bookmark"><span class="f-left">公告通知 </span>  [@cms_channel id='75'] <a href="${tag_bean.url}" class="text_more">更多&gt;&gt;</a>[/@cms_channel]</li>
+      [@cms_content_list count='7' orderBy='4' titLen='30' channelId='75'  channelOption='1' dateFormat='yyyy-MM-dd' ]
+      [#list tag_list as a]
+      <li><a href="${a.url}" title="${a.title}" class="name_l">[@text_cut s=a.title len=titLen append='...'/]</a><span class="date_r">${a.date?string(dateFormat)}</span></li>
+      [/#list]
+      [/@cms_content_list]
+  </ul>
+
+    <ul class="articlelist_danger01">
+        <li class="tit_bookmark"><span class="f-left">办事指南 </span>  [@cms_channel id='76'] <a href="${tag_bean.url}" class="text_more">更多&gt;&gt;</a>[/@cms_channel]</li>
+        [@cms_content_list count='7' orderBy='4' titLen='30' channelId='76'  channelOption='1' dateFormat='yyyy-MM-dd' ]
+        [#list tag_list as a]
+        <li><a href="${a.url}" title="${a.title}" class="name_l">[@text_cut s=a.title len=titLen append='...'/]</a><span class="date_r">${a.date?string(dateFormat)}</span></li>
+        [/#list]
+        [/@cms_content_list]
+    </ul>
+
+
+    <ul class="articlelist_danger01">
+        <li class="tit_bookmark"><span class="f-left">执法依据 </span>  [@cms_channel id='68'] <a href="${tag_bean.url}" class="text_more">更多&gt;&gt;</a>[/@cms_channel]</li>
+        [@cms_content_list count='7' orderBy='4' titLen='30' channelId='68'  channelOption='1' dateFormat='yyyy-MM-dd' ]
+        [#list tag_list as a]
+        <li><a href="${a.url}" title="${a.title}" class="name_l">[@text_cut s=a.title len=titLen append='...'/]</a><span class="date_r">${a.date?string(dateFormat)}</span></li>
+        [/#list]
+        [/@cms_content_list]
+    </ul>
+
+
+      <table  border="0" cellpadding="0" cellspacing="0" class="margin_b10">
+        <tr>
+          <td valign="middle" class="office_name">派出机构</td>
+          <td valign="middle" class="office_pot"><a class="per3" href="/pcjg/1022.jhtml">小店分局</a><a class="per3" href="/pcjg/1023.jhtml">迎泽分局</a><a class="per3" href="/pcjg/1025.jhtml">万柏林分局</a><a class="per3" href="/pcjg/1027.jhtml">晋源分局</a><a class="per3" href="/pcjg/2442.jhtml">娄烦县局</a><a class="per3" href="http://www.sxtyxhl.gov.cn/xinghl/ziz/mb1/index.jsp?fuksid=279">杏花岭分局</a><a class="per3" href="/pcjg/2440.jhtml">古交市局</a><a class="per3" href="/pcjg/2441.jhtml">清徐县局</a><a class="per3" href="/pcjg/1026.jhtml">尖草坪分局</a><a class="per3" href="/pcjg/2443.jhtml">阳曲县局</a></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="0" cellspacing="0" >
+        <tr>
+          <td valign="middle" class="office_name">内设机构</td>
+          <td valign="middle" class="office_pot"><a class="per3" href="/nsjg/1020.jhtml"> 办公室 </a><a class="per3" href="/nsjg/1091.jhtml">人事处 </a><a class="per3" href="/nsjg/1089.jhtml">医疗器械监管处 </a><a class="per3" href="/nsjg/2590.jhtml"> 保健食品化妆品监管处 </a><br class="spacer"/>
+            <a class="per3" href="/nsjg/1092.jhtml"> 机关党委 </a><a class="per3" href="/nsjg/1088.jhtml">稽查处</a><a class="per3" href="/nsjg/25844.jhtml"> 药品安全监管处 </a><a class="per3" href="/nsjg/1021.jhtml">餐饮服务食品安全监管处</a><br class="spacer"/>
+            <a class="per3" href="/nsjg/1090.jhtml"> 财务处 </a><a class="per3" href="/nsjg/2343.jhtml">纪检监察室</a><a class="per3" href="/nsjg/1087.jhtml"> 药品市场监督处</a><a class="per3" href="/nsjg/2589.jhtml"> 行政审批处（政策法规处） </a></td>
+        </tr>
+      </table>
+    </div>
+
+
+  <!----bodymain2nd_right end --->
+</div>
+<!--------------------------bodymain end--------------------------------->
+
+<!--------------------------footer start--------------------------------->
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]

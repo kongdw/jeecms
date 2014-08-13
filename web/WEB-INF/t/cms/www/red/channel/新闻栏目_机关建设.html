@@ -1,0 +1,58 @@
+[#include "../include/共用head.html"/]
+
+<body onload="MM_preloadImages('/${res}/images/ad_r02.gif','/${res}images/icon_home2.png')">
+<!--header start -->
+[#include "../include/页头导航栏.html"/]
+<!--header end -->
+<!--------------------------bodymain start--------------------------------->
+<div class="bodymain bodymain3nd">
+    <!--bodymain3nd_left start -->
+    <div class="bodymain3nd_left">
+        <ul class="leftmenu">
+            <li class="leftmenu_tit">${channel.title!channel.name}</li>
+            [@cms_channel_list parentId=channel.id]
+            [#list tag_list as c]
+
+            <li> <a href="${c.url}">${c.name} </a></li>
+
+            [/#list]
+            [/@cms_channel_list]
+        </ul>
+
+    </div>
+    <!----bodymain3nd_left end --->
+
+    <!--bodymain3nd_right start -->
+    <div class="bodymain3nd_right">
+        <!--status bar start -->
+        [#include "../include/导航路径.html"/]
+        <!--status bar end -->
+        <!--article lise start -->
+
+        [@cms_channel_list parentId=channel.id]
+        [#list tag_list as c]
+        [@cms_content_list count='10' orderBy='4' titLen='50' channelId=c.id  channelOption='1']
+        [#if tag_list?size >0]
+        <ul class="articlelist_danger01">
+            <li class="tit_w"><span class="titname">${c.name} </span><a href="${c.url}" class="text_more">更多&gt;&gt;</a></li>
+            [#list tag_list as a]
+            <li><a href="${a.url}" class="name_l">[@text_cut s=a.title len=titLen append='...'/]</a><span class="date_r">${a.date?string('yyyy-MM-dd')}</span></li>
+            [/#list]
+        </ul>
+        <br class="spacer">
+        [/#if]
+        [/@cms_content_list]
+        [/#list]
+        [/@cms_channel_list]
+
+        <!--article lise end -->
+    </div>
+    <!----bodymain3nd_right end --->
+</div>
+<!--------------------------bodymain end--------------------------------->
+
+<!--------------------------footer start--------------------------------->
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]

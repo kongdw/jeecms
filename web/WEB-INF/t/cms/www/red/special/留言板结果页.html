@@ -1,0 +1,42 @@
+[#include "../include/共用head.html"/]
+<body onload="MM_preloadImages('/${res}/images/ad_r02.gif','/${res}/images/icon_home2.png')">
+[#include "../include/页头导航栏.html"/]
+<div class="bodymain bodymain3nd">
+<div class="bodymain3nd_left">
+    <ul class="leftmenu">
+        <li class="leftmenu_tit">${channel.parent.name!channel.title}</li>
+        [@cms_channel_list parentId=channel.parentId]
+        [#list tag_list as c]
+        <li [#if channel??&&channel.id==c.id]class="selected"[/#if]> <a href="${c.url}">${c.name} </a></li>
+        [/#list]
+        [/@cms_channel_list]
+    </ul>
+</div>
+<div class="w700 mt10">
+    [#include "../include/导航路径.html"/]
+    <div class="rim05">
+        <div class="LanMu01-2">
+            <div class="LanMu01-1"></div>
+            <span  style="color: #3358a1; font-size: 18px; font-weight: bold;" >留言板结果</span>
+
+            <div class="LanMu01-3"></div>
+        </div>
+        <div class="survey">
+            <dl>
+                <dt></dt>
+                <dd class="msg" style="font-size:13px; color:#cc001d;">
+                    [#if status==0]
+                    留言提交成功，系统审核后会显示在留言列表中！
+                    [#else]
+                    留言提交失败，请检查输入项中的内容格式及长度！
+                    [/#if]
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+</div>
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]

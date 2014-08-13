@@ -1,0 +1,20 @@
+#认证信息表
+select * from jo_authentication; 
+#CMS管理员站点表
+select * from jc_user_site;
+#CMS用户角色关联表
+select * from jc_user_role;
+#CMS角色表
+select * from jc_role; 
+#CMS栏目表 
+select * from jc_channel;
+#CMS栏目内容表
+select * from jc_channel_ext;
+select * from jc_channel_attr;
+select * from jc_channel_model;
+select * from jc_model; 
+select * from jc_model_item;
+
+select  * from jc_site_flow；
+
+select * from jc_topic;

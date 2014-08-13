@@ -1,0 +1,28 @@
+
+<form action="${base}/searchJob.jspx" target="_self" style="border:0px solid red; ">
+        [@cms_model id="3"]
+        [#list tag_bean.items as item]
+        [#if item.field=="category"]
+        [#assign category=item.optValue/]
+        [#elseif item.field=="workplace"]
+        [#assign workplace=item.optValue/]
+        [/#if]
+        [/#list]
+    <select name="category" style="width:90%;">
+        [#list category!?split(",") as opt]
+        <option value="${opt!}" [#if queryCategory??][#if queryCategory=="${opt}"]selected="selected"[/#if][/#if]>${opt!}</option>
+        [/#list]
+    </select>
+    <br>
+    <select name="workplace" style="width:90%;">
+        [#list workplace!?split(",") as opt]
+        <option value="${opt!}"[#if queryWorkplace??][#if queryWorkplace=="${opt}"]selected="selected"[/#if][/#if]>${opt!}</option>
+        [/#list]
+        [/@cms_model]
+    </select>
+    <br>
+    <input name="q" value="" type="text" id="txtKey" style="height: 24px;" />
+    <br>
+    <input type="submit" class="btn btn-info" value="搜索"/>
+
+</form>

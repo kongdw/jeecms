@@ -1,0 +1,129 @@
+<script language="javascript">
+    var menu_defid = "[#if !channel??]0[#elseif channel.id==94]0[#elseif channel.parentId?? ]${channel.parentId}[#else]${channel.id}[/#if]";
+    $(document).ready(function () {
+        var o_mli = $("#f_" + menu_defid);
+        var o_sli = $("#s_" + menu_defid);
+        var my_li = $(".my_menu li");
+        o_mli.attr("class", "f_li_a");
+        o_sli.show();
+        my_li.live({
+            mouseenter: function () {
+                var id = $(this).attr("data-id");
+                var mli = $("#f_" + id);
+                var sli = $("#s_" + id);
+                o_mli.attr("class", "f_li");
+                mli.attr("class", "f_li_a");
+                o_sli.hide();
+                sli.show();
+            },
+            mouseleave: function () {
+                var id = $(this).attr("data-id");
+                var mli = $("#f_" + id);
+                var sli = $("#s_" + id);
+                mli.attr("class", "f_li");
+                o_mli.attr("class", "f_li_a");
+                sli.hide();
+                o_sli.show();
+            }
+        });
+    });
+</script>
+<script language="javascript">
+    function showBgImage(c)
+    {
+        var curIndex = 0;           //定义开始索引
+        var timeInterval = c || 3000;   //定义切换时间，
+        var arr = new Array();
+        arr[0] = "/${res}/images/bg_topimg.jpg";    //给数组每一项赋值，就是添加图片路劲
+        arr[1] = "/${res}/images/bg_topimg2.jpg";
+        arr[2] = "/${res}/images/bg_topimg3.jpg";
+
+        setInterval(changeImg, timeInterval);       //调用显示图片方法（参数为：方法名和切换时间）
+        function changeImg() {
+            var obj = document.getElementById("logoId");   //获得所要设置的元素
+            if (curIndex == arr.length - 1) {
+                curIndex = 0;
+            }
+            else{
+                curIndex += 1;
+            }
+            obj.style.backgroundImage = "url(" + arr[curIndex] + ")";     //设置获得元素的背景图片
+        }
+    }
+</script>
+<!--header start -->
+<div class="header_box" id="logoId">
+    <div class="header" >
+    <script language="JavaScript">
+        showBgImage(3000);
+    </script>
+    <div class="logobar" ><img src="/${res}/images/logo.png" width="477" height="48"/>  </div>
+
+    <!--topnav start -->
+    <div id="topnav">
+        <div class="my_menu" id="menu">
+            <ul>
+                [@cms_channel_list]
+                <li data-id="0" id="f_0" class="f_li"><a href="${base}/">网站首页</a></li>
+                [#list tag_list as c]
+                [#if c_index<6]
+                <li class="f_line"></li>
+                <li data-id="${c.id}" id="f_${c.id}" class="f_li"><a
+                    href="${c.url}">${c.name}</a></li>
+                [/#if]
+                [/#list]
+                [/@cms_channel_list]
+                <form action="${base}/search.jspx" target="_blank">
+                    <input type="hidden" id="channel_id" value="[#if !channel??]0[#else]${channel.id}[/#if]">
+                <li class="searchbox">
+                    <input id="txtKey" name="q" type="text" placeholder="请输入关键字"
+                           style="padding-left:5px;display:block; float:left;"/>
+                    <input class="btn  btn-search"
+                           style="height:28px; display:block; float:left;" type="submit" id="btnSearch" value="搜索"/>
+                </li>
+                </form>
+            </ul>
+        </div>
+        <div class="my_menu" id="smenu">
+            <ul>
+                <li data-id="0" class="s_li" id="s_0" style="padding-left: 0px;">
+
+                    <a href="${base}\sjcx\index.htm">数据查询</a> |
+                    <a href="${base}\bszn\index.htm">办事指南</a> |
+                    <a href="${base}\gzjl\index.htm">工作交流</a> |
+                    <a href="${base}\aqyy\index.htm">安全用药</a> |
+                    <a href="${base}\dwfc\index.htm">队伍风采</a> |
+                    <a href="${base}\qyzc\index.htm">企业之窗</a>
+                </li>
+
+                [@cms_channel_list]
+                [#list tag_list as a]
+                [#if a_index<6]
+
+                <li data-id="${a.id}" class="s_li" id="s_${a.id}" style="padding-left:0px;">
+                    [@cms_channel_list parentId=a.id]
+                    [#list tag_list as c]
+                    [#if !c_has_next]
+                    <a href="${c.url}">${c.name}</a>
+                    [#else]
+                    <a href="${c.url}">${c.name}</a> |
+                    [/#if]
+                    [/#list]
+                    [/@cms_channel_list]
+                </li>
+                [/#if]
+                [/#list]
+                [/@cms_channel_list]
+
+                <li class="s_li_data">
+                    <script language="javascript">
+                        getClock();
+                    </script>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--topnav end -->
+</div>
+<!--header end -->
+</div>

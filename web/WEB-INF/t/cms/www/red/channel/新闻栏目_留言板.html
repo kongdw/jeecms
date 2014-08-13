@@ -1,0 +1,161 @@
+[#include "../include/共用head.html"/]
+<body onload="MM_preloadImages('/${res}/images/ad_r02.gif','/${res}/images/icon_home2.png')">
+[#include "../include/页头导航栏.html"/]
+<style>
+    .formtab input{padding:2px 10px;}
+   .formtab td{ background: #fff;}
+</style>
+<!--------------------------bodymain start--------------------------------->
+<div class="bodymain bodymain3nd">
+    <!--bodymain3nd_left start -->
+    <div class="bodymain3nd_left">
+        <ul class="leftmenu">
+            <li class="leftmenu_tit">${channel.parent.name!channel.title}</li>
+            [@cms_channel_list parentId=channel.parentId]
+            [#list tag_list as c]
+            <li [#if channel??&&channel.id==c.id]class="selected"[/#if]> <a href="${c.url}">${c.name} </a></li>
+            [/#list]
+            [/@cms_channel_list]
+        </ul>
+
+    </div>
+
+    <div class="bodymain3nd_right">
+        <!--status bar start -->
+        [#include "../include/导航路径.html"/]
+        <!--status bar end -->
+        <div class="hundred100 mt10">
+            <div class="AreaTitle">留言列表</div>
+            <div class="lybCon">
+                [@cms_guestbook_page siteId=site.id count='5' checked='1']
+                [#list tag_pagination.list as m]
+                <dl>
+                    <div class="lybTX">
+                        [#if m.member?? && m.member.userImg??]
+                        [#if m.member.userImg!=""]
+                        <img src="${m.member.userImg!}"  height="50" width="50"/>
+                        [#else]
+                        <img src="/${res}/images/member-phtot.gif" height="50" width="50"/>
+                        [/#if]
+                        [#else]
+                        <img src="/${res}/images/member-phtot.gif" height="50" width="50"/>
+                        [/#if]
+                    </div>
+
+                    <div class="lybMessage">
+                        <h1>[${m.ctg.name!}]&nbsp;${m.contentHtml!}</h1>
+                        <span style="color:#E66100; font-size:12px;">${(m.member.username)!'匿名网友'} 于${m.createTime}{回复}：</span>
+                        <span style="color:#959595; font-size:12px; line-height:20px;">[@text_cut s=m.contentHtml len=60/]</span>
+                        <div class="clear"></div>
+                        <img src="../../${res}/images/guestbook/icon_message.gif" class="lybImg">
+                        <h4>&nbsp;回复：[@text_cut s=m.replyHtml len=30/]</h4>
+                    </div>
+                </dl>
+                <div class="clear"></div>
+                <div style="border-bottom:1px dashed #d6d6d6;"></div>
+                [/#list]
+                <div class="pagesite" style="font-size:13px; color:#666; margin-bottom: 20px;">[@cms_pagination sysPage='1'/]</div>
+                [/@cms_guestbook_page]
+            </div>
+        </div>
+        <div class="clear-10"></div>
+        <div class="hundred100">
+            <div class="AreaTitle">发表留言</div>
+            <div class="lybCon">
+                <form id="guestbookForm" action="${base}/guestbook.jspx" method="post">
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="formtab" style="margin-top:10px; font-size: 13px;">
+                        <tr>
+                            <td width="15%" height="35" align="right" bgcolor="#fff">类别：</td>
+                            <input type="hidden" name="channelId" value="${channel.id}"/>
+                            <td bgcolor="#FFFFFF">
+                                <select name="ctgId" class="contactTex1">
+                                    [@cms_guestbook_ctg_list siteId=site.id]
+                                    [#list tag_list as ctg]
+                                    <option value="${ctg.id}">${ctg.name}</option>
+                                    [/#list]
+                                    [/@cms_guestbook_ctg_list]
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="15%" height="35" align="right" bgcolor="#fff">标题：</td>
+
+                            <td bgcolor="#FFFFFF">
+
+                                <input name="title" type="text" size="40" class="contactTex1" maxlength="255"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="15%" align="right" bgcolor="#fff">姓名：</td>
+                            <td bgcolor="#FFFFFF">
+                                <input type="text" name="qq" class="contactTex1"/></td>
+                        </tr>
+                        <tr>
+                            <td width="15%" height="35" align="right" bgcolor="#fff">电话：</td>
+                            <td bgcolor="#FFFFFF">
+                                <input type="text" name="phone" class="contactTex1" maxlength="50"/></td>
+                        </tr>
+                        <tr style="height: 40px;">
+                            <td width="15%" align="right" bgcolor="#fff">电子邮箱：</td>
+                            <td colspan="3" bgcolor="#FFFFFF">
+                                <input type="text" name="email" class="contactTex1" maxlength="100"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="15%" align="right" valign="middle" bgcolor="#fff">
+                                留言内容：
+                            </td>
+                            <td colspan="3" bgcolor="#FFFFFF">
+                                <textarea name="content" class="cinput" cols="55" rows="4"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td width="15%" align="right" bgcolor="#fff">验证码：</td>
+                            <td colspan="3" bgcolor="#FFFFFF">
+                                <div style="float:left; margin-top:10px;">
+                                    <input type="text" name="captcha" class="plcode" maxlength="20"/>
+                                </div>
+                                <div style="float:left;">
+                                    <img id="guestbookCaptcha" src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()"/>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center" bgcolor="#FFFFFF">
+                                <div class="clear-10"></div>
+                                <input type="image"  src="/${res}/images/guestbook/gb-button.gif" name="submit" style="border: none; padding:0; width:118px;height:32px;"/>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#guestbookForm").validate({
+                            submitHandler: function (form) {
+                                $(form).ajaxSubmit({
+                                    "success": function (data) {
+                                        if (data.status == 0) {
+                                            alert("留言提交成功");
+                                            location.href = location.href;
+                                        } else if (data.status == 1) {
+                                            alert("验证码错误");
+                                            $("#guestbookCaptcha").click();
+                                        } else {
+                                            alert("留言提交失败");
+                                        }
+                                    },
+                                    "dataType": "json"
+                                });
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--------------------------bodymain end--------------------------------->
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]

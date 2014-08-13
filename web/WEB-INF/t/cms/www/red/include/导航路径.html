@@ -1,0 +1,9 @@
+<div class="statusbar"><a href="/" style="border:none;" onmouseout="MM_swapImgRestore()"
+                                onmouseover="MM_swapImage('Image3','','/${res}/images/icon_home2.png',1)"><img
+        src="/${res}/images/icon_home.png" width="18" height="15" id="Image3" style="border:none;"/></a>　&gt;　
+    [#list channel.nodeList as n]
+    <a href="${n.url}" >${n.name}</a>
+    [#if n_has_next] &gt;
+    [/#if]
+    [/#list]
+</div>

@@ -1,0 +1,77 @@
+[#include "../include/共用head.html"/]
+<body>
+<div class="container">
+    [#include "../include/页头导航栏.html"/]
+    <!--------------------------bodymain start--------------------------------->
+    <div class="bodymain bodymain2nd">
+        <!--bodymain_right start -->
+        <div class="bodymain_right">
+
+            <!--曝光栏  start -->
+
+                <ul class="tabbox_news padding_b10 margin_b10">
+                    <li class="title">曝光台</li>
+                    <ul class="newslist padding_h5 padding_w10">
+                        [@cms_content_list count='10' orderBy='4' titLen='19' channelId='73' channelOption='1']
+                        [#list tag_list as a]
+                        <li><a href="${a.url}">[@text_cut s=a.title len=titLen append='...'/]</a></li>
+                        [/#list]
+                        [/@cms_content_list]
+
+                </ul>
+            </ul>
+            <!--曝光栏  end -->
+            <!--快捷通道 start -->
+            [#include "../include/快捷通道.html"]
+            <!--快捷通道 end -->
+
+            <!--网站链接 start -->
+            [#include "../include/友情链接_下拉列表.html"/]
+            <!--网站链接 end -->
+            <!--快捷图标 start-->
+            <div class="margin_b7">
+                <p class="margin_b7"><img src="/${res}/images/btn_hotline.gif" width="312" height="60" /> </p>
+            </div>
+            <!--快捷图标 end-->
+        </div>
+        <!----bodymain_right end --->
+
+        <!--bodymain_left start -->
+        <div class="bodymain_left">
+            <!--status bar start -->
+            <div class="statusbar"><a href="/" style="border:none;" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','/${res}/images/icon_home2.png',1)"><img src="/${res}/images/icon_home.png"  width="18" height="15" id="Image3" style="border:none;"/></a>　&gt;　搜索结果 </div>
+            <!--status bar end -->
+
+            <!--article lise start -->
+            <div class="articlelist">
+                [#if q??]
+                [@cms_lucene_page q=q channelId=channelId descLen='100' append='...' count='10']
+                <div class="search_msg" style="font-size: 14px; color: #444;">
+                    您搜索的<span class="red">“${input!}”</span>， 共有 <span class="red">${tag_list?size} 条</span> 查询结果
+                </div>
+                [#list tag_list as s]
+                <dl class="sslist">
+                    <dt style="line-height: 30px;"><span class="tit_search">[<a href="${s.ctgUrl}" target="_blank" class="tit_search">${s.ctgName}</a>]</span>  <a href="${s.url}" title="${s.title}" target="_blank" style="font-size:14px; color:#666;">${s.title}</a></dt>
+                    <dd class="zy" style="line-height: 30px;">[@text_cut s=s.description len=descLen append=append/]</dd>
+                    <dd style="font-size:12px; color: #888;line-height: 30px; ">来源： <a href="${s.originUrl!}" target="_blank">${s.origin!'本站原创'}</a> &nbsp;&nbsp; 发布时间： ${s.releaseDate} </dd>
+                      <dt style="border-bottom: 1px dashed #ccc; margin:5px 0;"></dt>
+                </dl>
+                [/#list]
+                <div class="pagesite"  style="font-size: 13px;color: #444;margin:10px 0;">[@cms_pagination sysPage='1'/]</div>
+                [/@cms_lucene_page]
+                [/#if]
+            </div>
+
+            </div>
+
+        </div>
+
+        <!----bodymain2nd_right end --->
+    </div>
+    <!--------------------------bodymain end--------------------------------->
+</div>
+<!--------------------------footer start--------------------------------->
+[#include "../include/页脚信息栏.html"/]
+<!--------------------------footer end--------------------------------->
+</body>
+[#include "../include/共用tail.html"/]
